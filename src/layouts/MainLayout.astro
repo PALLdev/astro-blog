@@ -1,0 +1,22 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <BaseHead title={title} />
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/blog">Blogs</a>
+    </nav>
+    <main>
+      <slot />
+      <!-- your content is injected here -->
+    </main>
+  </body>
+</html>
