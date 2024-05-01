@@ -2,7 +2,9 @@
 import Layout from "@/layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <Layout title="Blog Page">
@@ -35,7 +37,16 @@ const posts = await getCollection("blog");
                               </span>
                             ))}
                           </div>
-                          <p class="mt-6 text-sm text-zinc-400">{pubDate}</p>
+                          <time
+                            datetime={pubDate.toISOString()}
+                            class="mt-6 text-sm text-zinc-400"
+                          >
+                            {pubDate.toLocaleDateString("es-CL", {
+                              year: "numeric",
+                              month: "numeric",
+                              day: "numeric",
+                            })}
+                          </time>
                         </div>
                       </div>
                     </a>
