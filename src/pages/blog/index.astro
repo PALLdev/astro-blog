@@ -1,4 +1,5 @@
 ---
+import Article from "@/components/Article.astro";
 import Layout from "@/layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -11,51 +12,7 @@ const posts = (await getCollection("blog")).sort(
   <div class="max-w-content-size mx-auto w-full">
     <section class="mt-6 w-full">
       <ul class="space-y-8">
-        {
-          posts.map((post) => {
-            const { heroImage, pubDate, tags, title } = post.data;
-
-            return (
-              <li class="border-extra-soft-white text-soft-white hover:bg-soft-light rounded-xl border transition-colors duration-200 hover:cursor-pointer">
-                <div>
-                  <article>
-                    <a>
-                      <img
-                        src={heroImage}
-                        alt=""
-                        width="1020"
-                        height="520"
-                        class="aspect-[16/5] rounded-t-xl object-cover"
-                      />
-                      <div class="w-full">
-                        <div class="flex flex-col px-12 py-4">
-                          <h4 class="text-3xl font-bold">{title}</h4>
-                          <div class="flex gap-2">
-                            {tags.map((tag) => (
-                              <span class="border-extra-soft-white mt-4 self-start rounded border px-2 py-1 text-zinc-400">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <time
-                            datetime={pubDate.toISOString()}
-                            class="mt-6 text-sm text-zinc-400"
-                          >
-                            {pubDate.toLocaleDateString("es-CL", {
-                              year: "numeric",
-                              month: "numeric",
-                              day: "numeric",
-                            })}
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                  </article>
-                </div>
-              </li>
-            );
-          })
-        }
+        {posts.map((post) => <Article slug={post.slug} {...post.data} />)}
       </ul>
     </section>
   </div>
