@@ -11,7 +11,7 @@ const posts = (await getCollection("blog")).sort(
 <Layout title="Blog Page">
   <div class="max-w-content-size mx-auto w-full">
     <section class="mt-6 w-full">
-      <ul class="space-y-8">
+      <ul class="space-y-8 mb-8">
         {posts.map((post) => <Article slug={post.slug} {...post.data} />)}
       </ul>
     </section>
