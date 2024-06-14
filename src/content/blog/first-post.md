@@ -1,6 +1,6 @@
 ---
 
-        heroImage: "https://placeholder.pics/svg/1020"
+        heroImage: "/assets/placeholder.png"
         title: "Mi primer post en astro"
         pubDate: "27 Apr 2024"
         tags: [ "PS4", "Juegos", "AI" ]

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
 import FormattedDate from "./FormattedDate.astro";
 type Props = CollectionEntry<"blog">["data"] & { slug: string };
@@ -12,11 +13,11 @@ const { slug, heroImage, pubDate, tags, title } = Astro.props;
   <div>
     <article>
       <a href={`/blog/${slug}`}>
-        <img
+        <Image
           src={heroImage}
           alt={`Imagen referencial al post ${title}`}
-          width="1020"
-          height="520"
+          width={1020}
+          height={520}
           class="aspect-[16/5] rounded-t-xl object-cover"
         />
         <div class="w-full">
