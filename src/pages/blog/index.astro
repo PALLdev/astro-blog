@@ -1,7 +1,8 @@
 ---
-import Article from "@/components/Article.astro";
-import Layout from "@/layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
+import Layout from "@/layouts/MainLayout.astro";
+import Article from "@/components/Article.astro";
+import TagSelector from "@/components/TagSelector.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -10,6 +11,8 @@ const posts = (await getCollection("blog")).sort(
 
 <Layout title="Blog Page">
   <div class="max-w-content-size mx-auto w-full">
+    <TagSelector />
+
     <section class="mt-6 w-full">
       <ul class="space-y-8 mb-8">
         {posts.map((post) => <Article slug={post.slug} {...post.data} />)}
